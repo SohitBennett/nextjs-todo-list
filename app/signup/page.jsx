@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'; // Correct import
 import { useState } from 'react';
+import { BASE_URL } from '../utils/api';
 
 export default function Signup() {
     const [form, setForm] = useState({ name: '', email: '', password: ''});
@@ -9,7 +10,7 @@ export default function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch('http://localhost:5000/api/auth/signup', {
+        const res = await fetch(`${BASE_URL}/api/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(form),

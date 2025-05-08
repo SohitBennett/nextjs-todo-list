@@ -271,6 +271,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { FaCheckCircle, FaEdit, FaTrashAlt } from 'react-icons/fa'; 
 import { MdLogout } from "react-icons/md";
+import { BASE_URL } from '../utils/api';
 
 export default function Tasks() {
     const [tasks, setTasks] = useState([]);
@@ -286,7 +287,7 @@ export default function Tasks() {
     // ... (fetchTasks, addTask, deleteTask, handleComplete functions remain the same)
 
     const fetchTasks = async () => {
-        const res = await fetch('http://localhost:5000/api/tasks', {
+        const res = await fetch(`${BASE_URL}/api/tasks`, {
             headers: { Authorization: `Bearer ${token}`},
         });
         const data = await res.json();
@@ -296,7 +297,7 @@ export default function Tasks() {
 
     const addTask = async (e) => {
         e.preventDefault();
-        const res = await fetch('http://localhost:5000/api/tasks', {
+        const res = await fetch(`${BASE_URL}/api/tasks`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
           body: JSON.stringify(form),
@@ -308,7 +309,7 @@ export default function Tasks() {
       };
 
       const deleteTask = async (id) => {
-        await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        await fetch(`${BASE_URL}/api/tasks/${id}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -316,7 +317,7 @@ export default function Tasks() {
       };
 
       const handleComplete = async (id) => {
-        await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        await fetch(`${BASE_URL}/api/tasks/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -340,7 +341,7 @@ export default function Tasks() {
     };
 
     const saveUpdate = async () => {
-        await fetch(`http://localhost:5000/api/tasks/${taskToUpdate._id}`, {
+        await fetch(`${BASE_URL}/api/tasks/${taskToUpdate._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
