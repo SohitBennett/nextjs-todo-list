@@ -1,275 +1,7 @@
-// 'use client'
-
-// import { useRouter } from 'next/navigation'; // Correct import
-// import { useState, useEffect } from 'react';
-
-// export default function Tasks() {
-//     const [tasks, setTasks] = useState([]);
-//     const [form, setForm] = useState({ title: '', desc: '' });
-//     const router = useRouter();
-
-//     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-
-//     const fetchTasks = async () => {
-//         const res = await fetch('http://localhost:5000/api/tasks', {
-//             headers: { Authorization: `Bearer ${token}`},
-//         });
-//         const data = await res.json();
-//         setTasks(data);
-//     };
-
-//     const addTask = async (e) => {
-//         e.preventDefault();
-//         const res = await fetch('http://localhost:5000/api/tasks', {
-//           method: 'POST',
-//           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-//           body: JSON.stringify(form),
-//         });
-//         if (res.ok) {
-//           setForm({ title: '', desc: '' });
-//           fetchTasks();
-//         }
-//       };
-
-//       const deleteTask = async (id) => {
-//         await fetch(`http://localhost:5000/api/tasks/${id}`, {
-//           method: 'DELETE',
-//           headers: { Authorization: `Bearer ${token}` },
-//         });
-//         fetchTasks();
-//       };
-
-//       const handleComplete = async (id) => {
-//         await fetch(`http://localhost:5000/api/tasks/${id}`, {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 Authorization: `Bearer ${token}`,
-//             },
-//             body: JSON.stringify({ isCompleted: true }),
-//         });
-//         fetchTasks();
-//     };
-
-//       useEffect(() => {
-//         if(!token) router.push('/login');
-//         else fetchTasks();
-//       }, []);
-
-//       return (
-//         <div className='w-full h-screen bg-zinc-400 flex justify-center p-8'>
-//             <div className='max-w-3xl w-full border border-slate-200 rounded-xl bg-white p-10'>
-                // <h2 className='text-2xl font-semibold tracking-tighter mb-5'>Your Tasks</h2>
-                // <form onSubmit={addTask}>
-                //     <div className='flex items-center justify-between pb-2 border-b-2 mb-5'>
-                //         <input className='w-1/3 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500' type="text" placeholder="Title" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-                //         <input className='w-1/3 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500' type="text" placeholder="Description" required value={form.desc} onChange={(e) => setForm({ ...form, desc: e.target.value })} />
-                //         <button
-                //             className="font-semibold border-[2px] rounded-lg px-2 py-1 bg-emerald-500 text-white transition-colors duration-200 hover:bg-emerald-600 active:bg-emerald-700 active:scale-95 transition-transform"
-                //             type="submit"
-                //         >
-                //             Add Task
-                //         </button>
-                //     </div>
-                // </form>
-//                 <ul>
-//                     {tasks.map((task) => (
-//                         <div className='w-full mt-2 p-2 border border-gray-200 rounded-lg hover:bg-gray-50' key={task._id}>
-//                             <div className='flex justify-between items-center p-2'>
-//                                 <div className='flex-1'> 
-//                                     <b className={`border-b-2 mr-1 ${task.isCompleted ? 'line-through text-gray-500' : ''}`}>{task.title}</b> - <b className={`font-light ml-2 ${task.isCompleted ? 'line-through text-gray-500' : ''}`}>{task.desc}</b>
-//                                 </div>
-//                                 <div>
-//                                     <button
-//                                         className="border rounded-lg px-2 transition-colors duration-200 hover:bg-green-200 active:bg-green-300 active:scale-95 transition-transform mr-1"
-//                                         onClick={() => handleComplete(task._id)}
-//                                     >
-//                                         ✔️
-//                                     </button>
-//                                     <button
-//                                         className="border rounded-lg px-2 transition-colors duration-200 hover:bg-red-200 active:bg-red-300 active:scale-95 transition-transform"
-//                                         onClick={() => deleteTask(task._id)}
-//                                     >
-//                                         ❌
-//                                     </button>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     ))}
-//                 </ul>
-//             </div>
-//         </div>
-//       );
-
-// }
-
-
-//working update button
-
-// 'use client';
-
-// import { useRouter } from 'next/navigation';
-// import { useState, useEffect } from 'react';
-
-// export default function Tasks() {
-//     const [tasks, setTasks] = useState([]);
-//     const [form, setForm] = useState({ title: '', desc: '' });
-//     const [editingTask, setEditingTask] = useState(null); // Track the task being edited
-//     const [editedTitle, setEditedTitle] = useState('');
-//     const [editedDesc, setEditedDesc] = useState('');
-//     const router = useRouter();
-
-//     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-
-//     // ... (fetchTasks, addTask, deleteTask, handleComplete functions remain the same)
-
-    // const fetchTasks = async () => {
-    //     const res = await fetch('http://localhost:5000/api/tasks', {
-    //         headers: { Authorization: `Bearer ${token}`},
-    //     });
-    //     const data = await res.json();
-    //     setTasks(data);
-    // };
-
-    // const addTask = async (e) => {
-    //     e.preventDefault();
-    //     const res = await fetch('http://localhost:5000/api/tasks', {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-    //       body: JSON.stringify(form),
-    //     });
-    //     if (res.ok) {
-    //       setForm({ title: '', desc: '' });
-    //       fetchTasks();
-    //     }
-    //   };
-
-    //   const deleteTask = async (id) => {
-    //     await fetch(`http://localhost:5000/api/tasks/${id}`, {
-    //       method: 'DELETE',
-    //       headers: { Authorization: `Bearer ${token}` },
-    //     });
-    //     fetchTasks();
-    //   };
-
-    //   const handleComplete = async (id) => {
-    //     await fetch(`http://localhost:5000/api/tasks/${id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: `Bearer ${token}`,
-    //         },
-    //         body: JSON.stringify({ isCompleted: true }),
-    //     });
-    //     fetchTasks();
-    // };
-
-//     const handleUpdate = (task) => {
-//         setEditingTask(task);
-//         setEditedTitle(task.title);
-//         setEditedDesc(task.desc);
-//     };
-
-//     const saveUpdate = async (id) => {
-//         await fetch(`http://localhost:5000/api/tasks/${id}`, {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 Authorization: `Bearer ${token}`,
-//             },
-//             body: JSON.stringify({ title: editedTitle, desc: editedDesc }),
-//         });
-//         setEditingTask(null);
-//         fetchTasks();
-//     };
-
-//     const cancelUpdate = () => {
-//         setEditingTask(null);
-//     };
-
-//     useEffect(() => {
-//         if (!token) router.push('/login');
-//         else fetchTasks();
-//     }, []);
-
-//     return (
-//         <div className='w-full h-screen bg-zinc-400 flex justify-center p-8'>
-//             <div className='max-w-3xl w-full border border-slate-200 rounded-xl bg-white p-10'>
-//                 {/* ... (form and task list rendering) */}
-                // <h2 className='text-2xl font-semibold tracking-tighter mb-5'>Your Tasks</h2>
-                // <form onSubmit={addTask}>
-                //     <div className='flex items-center justify-between pb-2 border-b-2 mb-5'>
-                //         <input className='w-1/3 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500' type="text" placeholder="Title" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-                //         <input className='w-1/3 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500' type="text" placeholder="Description" required value={form.desc} onChange={(e) => setForm({ ...form, desc: e.target.value })} />
-                //         <button
-                //             className="font-semibold border-[2px] rounded-lg px-2 py-1 bg-emerald-500 text-white transition-colors duration-200 hover:bg-emerald-600 active:bg-emerald-700 active:scale-95 transition-transform"
-                //             type="submit"
-                //         >
-                //             Add Task
-                //         </button>
-                //     </div>
-                // </form>
-//                 <ul>
-//                     {tasks.map((task) => (
-//                         <div className='w-full mt-2 p-2 border border-gray-200 rounded-lg hover:bg-gray-50' key={task._id}>
-//                             <div className='flex justify-between items-center p-2'>
-//                                 {editingTask && editingTask._id === task._id ? (
-//                                     <div className="flex-1">
-//                                         <input
-//                                             className="border rounded-md p-2 mr-2"
-//                                             value={editedTitle}
-//                                             onChange={(e) => setEditedTitle(e.target.value)}
-//                                         />
-//                                         <input
-//                                             className="border rounded-md p-2"
-//                                             value={editedDesc}
-//                                             onChange={(e) => setEditedDesc(e.target.value)}
-//                                         />
-//                                         <button className="border rounded-md p-2 bg-blue-500 text-white mr-1" onClick={() => saveUpdate(task._id)}>Save</button>
-//                                         <button className="border rounded-md p-2" onClick={cancelUpdate}>Cancel</button>
-//                                     </div>
-//                                 ) : (
-//                                     <div className='flex-1'>
-//                                         <b className={`border-b-2 mr-1 ${task.isCompleted ? 'line-through text-gray-500' : ''}`}>{task.title}</b> - <b className={`font-light ml-2 ${task.isCompleted ? 'line-through text-gray-500' : ''}`}>{task.desc}</b>
-//                                     </div>
-//                                 )}
-//                                 <div>
-                                    // <button
-                                    //     className="border rounded-lg px-2 transition-colors duration-200 hover:bg-green-200 active:bg-green-300 active:scale-95 transition-transform mr-1"
-                                    //     onClick={() => handleComplete(task._id)}
-                                    // >
-                                    //     ✔️
-                                    // </button>
-//                                     <button
-//                                         className="border rounded-lg px-2 transition-colors duration-200 hover:bg-blue-200 active:bg-blue-300 active:scale-95 transition-transform mr-1"
-//                                         onClick={() => handleUpdate(task)}
-//                                     >
-//                                         Update
-//                                     </button>
-                                    // <button
-                                    //     className="border rounded-lg px-2 transition-colors duration-200 hover:bg-red-200 active:bg-red-300 active:scale-95 transition-transform"
-                                    //     onClick={() => deleteTask(task._id)}
-                                    // >
-                                    //     ❌
-                                    // </button>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     ))}
-//                 </ul>
-//             </div>
-//         </div>
-//     );
-// }
-
-
-// popup update button 
-
 'use client';
 
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { FaCheckCircle, FaEdit, FaTrashAlt } from 'react-icons/fa'; 
 import { MdLogout } from "react-icons/md";
 import { BASE_URL } from '../utils/api';
 
@@ -284,11 +16,9 @@ export default function Tasks() {
 
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
-    // ... (fetchTasks, addTask, deleteTask, handleComplete functions remain the same)
-
     const fetchTasks = async () => {
         const res = await fetch(`${BASE_URL}/api/tasks`, {
-            headers: { Authorization: `Bearer ${token}`},
+            headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
         console.log(data);
@@ -298,25 +28,25 @@ export default function Tasks() {
     const addTask = async (e) => {
         e.preventDefault();
         const res = await fetch(`${BASE_URL}/api/tasks`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-          body: JSON.stringify(form),
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify(form),
         });
         if (res.ok) {
-          setForm({ title: '', desc: '' });
-          fetchTasks();
+            setForm({ title: '', desc: '' });
+            fetchTasks();
         }
-      };
+    };
 
-      const deleteTask = async (id) => {
+    const deleteTask = async (id) => {
         await fetch(`${BASE_URL}/api/tasks/${id}`, {
-          method: 'DELETE',
-          headers: { Authorization: `Bearer ${token}` },
+            method: 'DELETE',
+            headers: { Authorization: `Bearer ${token}` },
         });
         fetchTasks();
-      };
+    };
 
-      const handleComplete = async (id) => {
+    const handleComplete = async (id) => {
         await fetch(`${BASE_URL}/api/tasks/${id}`, {
             method: 'PUT',
             headers: {
@@ -363,87 +93,269 @@ export default function Tasks() {
     }, []);
 
     return (
-        <div className='w-full h-screen bg-zinc-400 flex justify-center p-8'>
-            <div className='max-w-3xl w-full border border-slate-200 rounded-xl bg-white p-10'>
-                {/* ... (form and task list rendering) */}
-                {/* <h2 className='text-2xl font-semibold tracking-tighter mb-5'>Your Tasks</h2> */}
-                <div className='flex justify-between items-center mb-5'> {/* Added flex container */}
-                    <h2 className='text-2xl font-semibold tracking-tighter'>Your Tasks</h2>
-                    <button
-                        className="font-semibold border rounded-lg px-3 py-1 bg-red-400 text-white transition-colors duration-200 hover:bg-red-500 active:bg-red-600 active:scale-95 transition-transform"
-                        onClick={handleLogout}
-                    >
-                        <MdLogout />
+        <div className='min-h-screen w-full bg-black flex justify-center px-4 py-8'>
+            <style jsx>{`
+                @import url('https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@400;500;700&display=swap');
+                
+                * {
+                    font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes modalFadeIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.95);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+
+                .fade-in {
+                    animation: fadeIn 0.6s ease-out;
+                }
+
+                .modal-fade-in {
+                    animation: modalFadeIn 0.3s ease-out;
+                }
+
+                .netflix-input {
+                    background: #333333;
+                    border: none;
+                    border-radius: 4px;
+                    color: white;
+                    padding: 12px 16px;
+                    font-size: 14px;
+                    transition: background 0.2s ease;
+                }
+
+                .netflix-input:focus {
+                    outline: none;
+                    background: #454545;
+                }
+
+                .netflix-input::placeholder {
+                    color: #8c8c8c;
+                }
+
+                .netflix-button {
+                    background: #E50914;
+                    border: none;
+                    border-radius: 4px;
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 12px 24px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .netflix-button:hover {
+                    background: #f40612;
+                }
+
+                .netflix-button:active {
+                    background: #c40812;
+                    transform: scale(0.98);
+                }
+
+                .task-card {
+                    background: #1a1a1a;
+                    border: 1px solid #333333;
+                    border-radius: 4px;
+                    padding: 16px;
+                    margin-bottom: 12px;
+                    transition: all 0.2s ease;
+                }
+
+                .task-card:hover {
+                    background: #222222;
+                    border-color: #444444;
+                }
+
+                .action-button {
+                    background: transparent;
+                    border: 1px solid #555555;
+                    border-radius: 4px;
+                    color: white;
+                    padding: 6px 12px;
+                    font-size: 13px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    margin-left: 8px;
+                }
+
+                .action-button:hover {
+                    background: #333333;
+                    border-color: #666666;
+                }
+
+                .action-button.complete:hover {
+                    background: #1a5f1a;
+                    border-color: #2d8f2d;
+                }
+
+                .action-button.edit:hover {
+                    background: #1a3d5f;
+                    border-color: #2d5f8f;
+                }
+
+                .action-button.delete:hover {
+                    background: #5f1a1a;
+                    border-color: #8f2d2d;
+                }
+
+                .action-button:disabled {
+                    opacity: 0.3;
+                    cursor: not-allowed;
+                }
+
+                .logout-button {
+                    background: transparent;
+                    border: 1px solid #555555;
+                    border-radius: 4px;
+                    color: white;
+                    padding: 8px 16px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                }
+
+                .logout-button:hover {
+                    background: #E50914;
+                    border-color: #E50914;
+                }
+            `}</style>
+
+            <div className='max-w-4xl w-full fade-in'>
+                {/* Header */}
+                <div className='flex justify-between items-center mb-8'>
+                    <h1 className='text-white text-3xl font-bold'>Your Tasks</h1>
+                    <button className="logout-button" onClick={handleLogout}>
+                        <MdLogout size={18} />
+                        <span>Logout</span>
                     </button>
                 </div>
-                <form onSubmit={addTask}>
-                    <div className='flex items-center justify-between pb-2 border-b-2 mb-5'>
-                        <input className='w-1/3 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500' type="text" placeholder="Title" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-                        <input className='w-1/3 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500' type="text" placeholder="Description" required value={form.desc} onChange={(e) => setForm({ ...form, desc: e.target.value })} />
-                        <button
-                            className="font-semibold border-[2px] rounded-lg px-2 py-1 bg-emerald-500 text-white transition-colors duration-200 hover:bg-emerald-600 active:bg-emerald-700 active:scale-95 transition-transform"
-                            type="submit"
-                        >
+
+                {/* Add Task Form */}
+                <form onSubmit={addTask} className="mb-8">
+                    <div className='flex gap-3 items-end'>
+                        <div className="flex-1">
+                            <input
+                                className='netflix-input w-full'
+                                type="text"
+                                placeholder="Task Title"
+                                required
+                                value={form.title}
+                                onChange={(e) => setForm({ ...form, title: e.target.value })}
+                            />
+                        </div>
+                        <div className="flex-1">
+                            <input
+                                className='netflix-input w-full'
+                                type="text"
+                                placeholder="Description"
+                                required
+                                value={form.desc}
+                                onChange={(e) => setForm({ ...form, desc: e.target.value })}
+                            />
+                        </div>
+                        <button className="netflix-button" type="submit">
                             Add Task
                         </button>
                     </div>
                 </form>
-                <ul>
-                    {tasks.map((task) => (
-                        <div className='w-full mt-2 p-2 border border-gray-200 rounded-lg hover:bg-gray-50' key={task._id}>
-                            
-                            <div className='flex justify-between items-center p-2'>
-                                <div className='flex-1'>
-                                    <b className={`border-b-2 mr-1 ${task.isCompleted ? 'line-through text-gray-500' : ''}`}>{task.title}</b> - <b className={`font-light ml-2 ${task.isCompleted ? 'line-through text-gray-500' : ''}`}>{task.desc}</b>
-                                </div>
-                                <div>
-                                    {/* ... (complete and delete buttons) */}
-                                    <button
-                                        className="border rounded-lg px-2 transition-colors duration-200 hover:bg-green-200 active:bg-green-300 active:scale-95 transition-transform mr-1"
-                                        onClick={() => handleComplete(task._id)}
-                                    >
-                                        ✔️
-                                    </button>
-                                    <button
-                                        className="border font-semibold tracking-tighter rounded-lg px-2 bg-blue-300 transition-colors duration-200 hover:bg-blue-200 active:bg-blue-300 active:scale-95 transition-transform mr-1"
-                                        // onClick={() => handleUpdate(task)}
-                                        onClick={() => !task.isCompleted && handleUpdate(task)} // Disable onClick when isCompleted
-                                        disabled={task.isCompleted}
-                                    >
-                                        Edit
-                                    </button>
 
-                                    {/* ... (delete button) */}
-                                    <button
-                                        className="border rounded-lg px-2 transition-colors duration-200 hover:bg-red-200 active:bg-red-300 active:scale-95 transition-transform"
-                                        onClick={() => deleteTask(task._id)}
-                                    >
-                                        ❌
-                                    </button>
+                {/* Tasks List */}
+                <div>
+                    {tasks.length === 0 ? (
+                        <div className="text-center py-12">
+                            <p className="text-gray-500 text-lg">No tasks yet. Add your first task above!</p>
+                        </div>
+                    ) : (
+                        tasks.map((task) => (
+                            <div className='task-card' key={task._id}>
+                                <div className='flex justify-between items-center'>
+                                    <div className='flex-1'>
+                                        <h3 className={`text-white font-semibold text-lg mb-1 ${task.isCompleted ? 'line-through opacity-50' : ''}`}>
+                                            {task.title}
+                                        </h3>
+                                        <p className={`text-gray-400 text-sm ${task.isCompleted ? 'line-through opacity-50' : ''}`}>
+                                            {task.desc}
+                                        </p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <button
+                                            className="action-button complete"
+                                            onClick={() => handleComplete(task._id)}
+                                            disabled={task.isCompleted}
+                                        >
+                                            ✓ Complete
+                                        </button>
+                                        <button
+                                            className="action-button edit"
+                                            onClick={() => !task.isCompleted && handleUpdate(task)}
+                                            disabled={task.isCompleted}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            className="action-button delete"
+                                            onClick={() => deleteTask(task._id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </ul>
+                        ))
+                    )}
+                </div>
 
                 {/* Update Modal */}
                 {updateModalOpen && (
-                    <div className="fixed inset-0 bg-transparent bg-opacity-50 flex justify-center items-center backdrop-blur-md transition-opacity duration-900">
-                        <div className="bg-white p-8 rounded-lg border-2 shadow-lg transition-transform duration-300 scale-100">
-                            <h2 className="text-lg font-semibold mb-4">Edit Task</h2>
-                            <input
-                                className="border rounded-md p-2 mb-2 w-full"
-                                value={editedTitle}
-                                onChange={(e) => setEditedTitle(e.target.value)}
-                            />
-                            <input
-                                className="border rounded-md p-2 mb-4 w-full"
-                                value={editedDesc}
-                                onChange={(e) => setEditedDesc(e.target.value)}
-                            />
-                            <div className="flex justify-end">
-                                <button className="border rounded-md p-2 bg-blue-500 text-white mr-2" onClick={saveUpdate}>Save</button>
-                                <button className="border rounded-md p-2" onClick={cancelUpdate}>Cancel</button>
+                    <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center backdrop-blur-sm z-50">
+                        <div className="bg-neutral-900 border border-neutral-700 p-8 rounded-md w-full max-w-md modal-fade-in">
+                            <h2 className="text-white text-2xl font-bold mb-6">Edit Task</h2>
+                            <div className="space-y-4">
+                                <input
+                                    className="netflix-input w-full"
+                                    placeholder="Task Title"
+                                    value={editedTitle}
+                                    onChange={(e) => setEditedTitle(e.target.value)}
+                                />
+                                <input
+                                    className="netflix-input w-full"
+                                    placeholder="Description"
+                                    value={editedDesc}
+                                    onChange={(e) => setEditedDesc(e.target.value)}
+                                />
+                            </div>
+                            <div className="flex gap-3 mt-6">
+                                <button className="netflix-button flex-1" onClick={saveUpdate}>
+                                    Save Changes
+                                </button>
+                                <button
+                                    className="action-button flex-1"
+                                    onClick={cancelUpdate}
+                                    style={{ marginLeft: 0 }}
+                                >
+                                    Cancel
+                                </button>
                             </div>
                         </div>
                     </div>
